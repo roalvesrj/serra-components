@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .loader-overlay {
+        display: flex;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(0,0,0,0.7);
+        z-index: 9999;
+    }
+
+    .loader-content {
+        text-align: center;
+        color: #ccc;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .loader-logo {
+        width: 270px;
+    }
+
+    .loader-mensagem {
+        font-size: 14px;
+        margin-top: 10px;
+    }
+
+    .loader {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .dot {
+        width: 24px;
+        height: 24px;
+        background: #4400ff;
+        border-radius: 100%;
+        display: inline-block;
+        animation: slide 1s infinite;
+    }
+
+    .dot:nth-child(1) {
+        animation-delay: 0.1s;
+        background: #b8cce0;
+    }
+
+    .dot:nth-child(2) {
+        animation-delay: 0.2s;
+        background: #96afcd;
+    }
+
+    .dot:nth-child(3) {
+        animation-delay: 0.3s;
+        background: #7392ba;
+    }
+
+    .dot:nth-child(4) {
+        animation-delay: 0.4s;
+        background: #5175a7;
+    }
+
+    .dot:nth-child(5) {
+        animation-delay: 0.5s;
+        background: #2e5894;
+    }
+
+    @keyframes slide {
+        0% {
+            transform: scale(1);
+        }
+        50% {
+            opacity: 0.3;
+            transform: scale(2);
+        }
+        100% {
+            transform: scale(1);
+        }
+    }
+
+    /* Para telas menores que 576px */
+    @media (max-width: 575px) {
+        .loader-logo {
+            width: 50vw;
+        }
+        .loader-mensagem {
+            font-size: 1.2em;
+        }
+    }
+
+    /* Para telas a partir de 576px */
+    @media (min-width: 576px) {
+        .loader-logo {
+            width: 40vw;
+        }
+        .loader-mensagem {
+            font-size: 1.5em;
+        }
+    }
+
+    /* Para telas a partir de 768px */
+    @media (min-width: 768px) {
+        .loader-logo {
+            width: 90vw;
+        }
+        .loader-mensagem {
+            font-size: 3rem;
+        }
+    }
+
+    /* Para telas a partir de 992px */
+    @media (min-width: 992px) {
+        .loader-logo {
+            width: 30vw;
+        }
+        .loader-mensagem {
+            font-size: 1.5em;
+        }
+    }
+
+    /* Para telas a partir de 1200px */
+    @media (min-width: 1200px) {
+        .loader-logo {
+            width: 25vw;
+        }
+        .loader-mensagem {
+            font-size: 1.6em;
+        }
+    }
+  </style>
+</head>
+<body>
+  <div class="loader-overlay hidden-print">
+    <div class="loader-content">
+        <img src="./images/wise_branco.svg" alt="Logo" class="loader-logo">
+        <div class="loader">
+            <div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+        </div>
+        <p class="loader-mensagem">{{ mensagem || 'Carregando ...' }}</p>
+    </div>
+</div>
+
+</body>
+</html>
