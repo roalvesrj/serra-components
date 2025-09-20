@@ -26,15 +26,19 @@ Serra Components é uma biblioteca leve e eficiente que oferece componentes reut
 ## 📦 Componentes Inclusos
 
 ### 🔄 SerraLoader
+
 Componente de carregamento profissional com:
+
 - Animação suave de pontos deslizantes
 - Logo customizável via SVG
 - Mensagens dinâmicas
 - Design responsivo
 - Cores customizáveis via CSS variables
 
-### 🍔 SerraMegaMenu  
+### 🍔 SerraMegaMenu
+
 Menu dropdown avançado com:
+
 - Animações CSS fluidas
 - Múltiplas seções organizadas
 - Fechamento automático ao clicar fora
@@ -44,18 +48,22 @@ Menu dropdown avançado com:
 ## 🚀 Instalação
 
 ### Via CDN (Recomendado)
+
 ```html
 <script src="https://cdn.jsdelivr.net/gh/roalvesrj/serra-components@main/dist/serra-components.iife.js"></script>
 ```
 
 ### Baixar Arquivo Local
+
 1. Baixe `serra-components.iife.js` da pasta `dist/`
 2. Inclua no seu projeto:
+
 ```html
 <script src="path/to/serra-components.iife.js"></script>
 ```
 
 ### Desenvolvimento Local
+
 ```bash
 # Clone o repositório
 git clone https://github.com/roalvesrj/serra-components.git
@@ -76,6 +84,7 @@ yarn build
 ### SerraLoader
 
 #### Uso via API Global (Recomendado)
+
 ```javascript
 // Mostrar loader com logo padrão
 SerraComponents.carregador.mostrar('Carregando dados...');
@@ -97,23 +106,29 @@ SerraComponents.carregador.definirLogo('/novo-logo.svg');
 ```
 
 #### Uso Direto no HTML
+
 ```html
 <!-- Loader sempre visível -->
-<serra-loader mensagem="Carregando..." logo-src="/logo.svg" visivel="true"></serra-loader>
+<serra-loader
+  mensagem="Carregando..."
+  logo-src="/logo.svg"
+  visivel="true"
+></serra-loader>
 
 <!-- Loader controlado via JavaScript -->
 <serra-loader id="meuLoader" mensagem="Processando dados..."></serra-loader>
 
 <script>
-const loader = document.getElementById('meuLoader');
-loader.exibir('Nova mensagem');
-loader.ocultar();
+  const loader = document.getElementById('meuLoader');
+  loader.exibir('Nova mensagem');
+  loader.ocultar();
 </script>
 ```
 
 ### SerraMegaMenu
 
 #### HTML Básico
+
 ```html
 <serra-mega-menu>
   <span slot="gatilho">Abrir Menu</span>
@@ -121,6 +136,7 @@ loader.ocultar();
 ```
 
 #### Controle via JavaScript
+
 ```javascript
 const menu = document.querySelector('serra-mega-menu');
 
@@ -144,6 +160,7 @@ SerraComponents.megaMenu.alternarTodos();
 ## 🎨 Customização
 
 ### Variáveis CSS para SerraLoader
+
 ```css
 serra-loader {
   --cor-texto-loader: #ffffff;
@@ -156,44 +173,45 @@ serra-loader {
 ```
 
 ### Exemplo de Customização Completa
+
 ```html
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Serra Components - Demo</title>
-  <style>
-    /* Customização do loader */
-    serra-loader {
-      --cor-texto-loader: #2c3e50;
-      --cor-ponto-loader-1: #e74c3c;
-      --cor-ponto-loader-2: #e67e22;
-      --cor-ponto-loader-3: #f39c12;
-      --cor-ponto-loader-4: #27ae60;
-      --cor-ponto-loader-5: #3498db;
-    }
-  </style>
-</head>
-<body>
-  <h1>Minha Aplicação</h1>
-  
-  <!-- Botões de controle -->
-  <button onclick="SerraComponents.carregador.mostrar('Carregando...')">
-    Mostrar Loader
-  </button>
-  
-  <button onclick="SerraComponents.carregador.ocultar()">
-    Ocultar Loader
-  </button>
-  
-  <!-- Menu dropdown -->
-  <serra-mega-menu>
-    <span slot="gatilho">Menu Principal</span>
-  </serra-mega-menu>
-  
-  <script src="serra-components.iife.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Serra Components - Demo</title>
+    <style>
+      /* Customização do loader */
+      serra-loader {
+        --cor-texto-loader: #2c3e50;
+        --cor-ponto-loader-1: #e74c3c;
+        --cor-ponto-loader-2: #e67e22;
+        --cor-ponto-loader-3: #f39c12;
+        --cor-ponto-loader-4: #27ae60;
+        --cor-ponto-loader-5: #3498db;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Minha Aplicação</h1>
+
+    <!-- Botões de controle -->
+    <button onclick="SerraComponents.carregador.mostrar('Carregando...')">
+      Mostrar Loader
+    </button>
+
+    <button onclick="SerraComponents.carregador.ocultar()">
+      Ocultar Loader
+    </button>
+
+    <!-- Menu dropdown -->
+    <serra-mega-menu>
+      <span slot="gatilho">Menu Principal</span>
+    </serra-mega-menu>
+
+    <script src="serra-components.iife.js"></script>
+  </body>
 </html>
 ```
 
@@ -213,17 +231,20 @@ yarn test:coverage
 ```
 
 ### Estrutura de Testes
+
 - **serra-components.test.js** - Testes da biblioteca principal e API global
-- **serra-loader.test.js** - Testes específicos do componente SerraLoader  
+- **serra-loader.test.js** - Testes específicos do componente SerraLoader
 - **serra-mega-menu.test.js** - Testes específicos do componente SerraMegaMenu
 
 ## 🛠️ Desenvolvimento
 
 ### Pré-requisitos
+
 - Node.js 18+
 - Yarn ou npm
 
 ### Scripts Disponíveis
+
 ```bash
 yarn dev          # Servidor de desenvolvimento
 yarn build        # Build para produção
@@ -238,23 +259,27 @@ yarn format      # Formatar código com Prettier
 ### Tecnologias Utilizadas
 
 #### 🏗️ Build & Desenvolvimento
+
 - **Vite 7.1.6** - Build tool ultra-rápido
 - **Terser** - Minificação avançada com remoção de debug
 - **ESLint 9.x** - Linting com configuração moderna
 - **Prettier 3.6.2** - Formatação automática de código
 
 #### 🧪 Testes & Qualidade
+
 - **Vitest 3.2.4** - Framework de testes rápido
 - **Happy DOM** - Ambiente DOM para testes
 - **70 testes** cobrindo todos os componentes e APIs
 
 #### 🎨 Web Components
+
 - **Custom Elements API** - Elementos customizados nativos
 - **Shadow DOM** - Encapsulamento completo de estilos
 - **Observed Attributes** - Reatividade nativa
 - **Vanilla JavaScript ES2023** - Sem dependências externas
 
 ### Estrutura do Projeto
+
 ```
 serra-components/
 ├── src/
@@ -278,13 +303,16 @@ serra-components/
 ## 🔧 Configuração Avançada
 
 ### Remoção Automática de Debug
+
 O build de produção remove automaticamente:
+
 - `console.log()`, `console.info()`, `console.debug()`, `console.trace()`
 - Statements `debugger`
 - Código morto (dead code)
 - Comentários
 
 ### Otimizações de Bundle
+
 - **Tree shaking** automático
 - **Minificação Terser** com 2 passadas
 - **Inlining de assets** (CSS, SVG, etc.)
@@ -299,6 +327,7 @@ O build de produção remove automaticamente:
 5. Abra um Pull Request
 
 ### Convenções de Commit
+
 Utilizamos [Conventional Commits](https://www.conventionalcommits.org/) com [Gitmojis](https://gitmoji.dev/):
 
 - `feat: ✨` - Nova funcionalidade
@@ -334,6 +363,7 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 ---
 
 > 🔗 **Links Úteis**
+>
 > - [Web Components MDN](https://developer.mozilla.org/en-US/docs/Web/Web_Components)
 > - [Custom Elements Spec](https://html.spec.whatwg.org/multipage/custom-elements.html)
 > - [Shadow DOM Spec](https://dom.spec.whatwg.org/#shadow-trees)

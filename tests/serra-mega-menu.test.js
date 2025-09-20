@@ -135,13 +135,26 @@ describe('SerraMegaMenu - Componente de Menu Dropdown', () => {
   });
 
   describe('Interação do Usuário', () => {
-    it('deve ter event listener configurado no gatilho', () => {
+    it('deve alternar estado ao clicar no gatilho', () => {
       const gatilho = menu.shadowRoot.querySelector('.gatilho');
       expect(gatilho).toBeTruthy();
 
-      // Testar diretamente os métodos em vez dos eventos
-      menu.alternar();
+      // Estado inicial fechado
+      expect(menu.estaAberto).toBe(false);
+
+      // Simular clique no gatilho usando dispatchEvent
+      const event = document.createEvent('Event');
+      event.initEvent('click', true, true);
+      gatilho.dispatchEvent(event);
+
       expect(menu.estaAberto).toBe(true);
+
+      // Clicar novamente para fechar
+      const event2 = document.createEvent('Event');
+      event2.initEvent('click', true, true);
+      gatilho.dispatchEvent(event2);
+
+      expect(menu.estaAberto).toBe(false);
     });
 
     it('deve alternar estado corretamente via métodos', () => {
@@ -159,14 +172,45 @@ describe('SerraMegaMenu - Componente de Menu Dropdown', () => {
       menu.abrir();
       expect(menu.estaAberto).toBe(true);
 
-      // Simular clique fora do componente
+      // Criar elemento fora do menu
       const elementoExterno = document.createElement('div');
       document.body.appendChild(elementoExterno);
 
-      // Simular clique usando click() method
-      elementoExterno.click();
+      // Simular clique fora usando dispatchEvent do Happy DOM
+      const event = document.createEvent('Event');
+      event.initEvent('click', true, true);
+
+      // Usar Object.defineProperty para definir o target
+      Object.defineProperty(event, 'target', {
+        value: elementoExterno,
+        writable: false,
+      });
+
+      // Disparar o evento no document para ativar o listener
+      document.dispatchEvent(event);
 
       expect(menu.estaAberto).toBe(false);
+    });
+
+    it('não deve fechar menu ao clicar dentro do componente', () => {
+      // Abrir menu primeiro
+      menu.abrir();
+      expect(menu.estaAberto).toBe(true);
+
+      // Simular clique dentro do componente
+      const event = document.createEvent('Event');
+      event.initEvent('click', true, true);
+
+      Object.defineProperty(event, 'target', {
+        value: menu,
+        writable: false,
+      });
+
+      // Disparar o evento no document
+      document.dispatchEvent(event);
+
+      // Menu deve permanecer aberto
+      expect(menu.estaAberto).toBe(true);
     });
 
     it('não deve fechar menu ao usar métodos internos', () => {
